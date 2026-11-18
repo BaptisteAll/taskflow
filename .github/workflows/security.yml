@@ -59,8 +59,11 @@ jobs:
           path: ${{ matrix.dossier }}/audit-report.json
           retention-days: 7
           if-no-files-found: error
-      - name: npm audit (échec si high ou critical)
-        run: npm audit --audit-level=high
+      # Seules les dépendances de production font échouer le job : les alertes sur
+      # les outils de test (devDependencies) sont triées via le rapport JSON ci-dessus
+      # et notées dans docs/SECURITE.md (registre des exceptions), jamais masquées.
+      - name: npm audit production (échec si high ou critical)
+        run: npm audit --omit=dev --audit-level=high
 
   sast:
     name: sast
