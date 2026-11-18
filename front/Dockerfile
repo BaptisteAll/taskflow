@@ -22,6 +22,11 @@ RUN npm run build
 # ---------- Étape 2 : servir le site avec Nginx -----------------------------
 FROM nginx:1.27-alpine
 
+# Mise à jour des paquets Alpine de l'image finale : l'image officielle contient
+# des paquets (brotli-libs, libcrypto3, libssl3) avec des failles CRITICAL pour
+# lesquelles un correctif est déjà publié, mais l'image n'a pas été reconstruite.
+RUN apk upgrade --no-cache
+
 # L'image Nginx remplace les variables ${...} des fichiers placés dans
 # /etc/nginx/templates/*.template et génère /etc/nginx/conf.d/default.conf.
 # On l'utilise pour récupérer automatiquement l'adresse du DNS (voir nginx.conf).
