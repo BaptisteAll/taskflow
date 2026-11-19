@@ -33,6 +33,7 @@ Aucune alerte n'est ignorée en silence. Chaque exception est notée ici.
 | Dépendances de test (vitest, vite, esbuild, tinypool, glob, minimatch) | npm audit | Corrigée | Présentes seulement en `devDependencies` (non exploitables en production), mais un correctif existait : mise à jour effectuée | 2026-11-19 |
 | picomatch (high, ReDoS) via vitest, vite, tinyglobby, fdir | npm audit | Exception datée | Aucun correctif publié (l'audit ne propose qu'un retour arrière vers une ancienne version de vitest). Outil de test uniquement (`devDependencies`) : absent de l'image de production, non exploitable en ligne. Le job bloque sur les dépendances de production (`--omit=dev`) ; le rapport complet reste publié en artefact. Issue ouverte pour suivre la sortie d'un correctif | 2026-12-18 |
 | Règle helmet_header_x_powered_by (Semgrep) sur app.js | Semgrep | Faux positif, ignoré (nosemgrep) | La règle se déclenche sur la ligne qui désactive l'en-tête X-Powered-By, c'est-à-dire sur la bonne pratique elle-même | 2026-12-18 |
+| Règle helmet_header_x_powered_by (Semgrep) sur app.js | Semgrep | Faux positif, ignoré (nosemgrep) | La règle se déclenche sur la ligne qui désactive l'en-tête X-Powered-By, c'est-à-dire sur la bonne pratique elle-même | 2026-12-18 |
 | body-parser (high) | npm audit | Corrigée | Dépendance d'Express, donc présente en production : `npm audit fix` | 2026-11-19 |
 
 ## Limites connues
